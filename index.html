@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <title>Game</title>
+</head>
+<body>
+
+    <script>
+   
+let gameScene= new Phaser.Scene('Game');  
+gameScene.create=function(){
+    this.circle=this.add.circle( 50, 150, 20, 0xffffff, 1);
+    this.circle.setPosition(30,150);
+    this.circle.angle=45
+    const button = this.add.sprite( 100, 100, 'button')
+	.setInteractive()
+	.on('pointerup', () => 
+       {
+        while (this.circle.x<760)
+            {
+                this.circle.x+=1
+            }
+    });
+    console.log('position',this.circle.x);
+//	.on('pointerup', () => button.setScale( 1 ));
+    
+};
+//        function bounce(){
+//        if (this.circle.x<620)
+//            {
+//                this.circle.x+=1;
+//            }
+//        };
+//        
+        
+        let config={
+            type:Phaser.AUTO,
+            width:800,
+            height:360,
+            scene: gameScene
+        }
+        let game=new Phaser.Game(config);
+</script>
+
+<!--<button onclick="bounce();">Click me</button>-->
+</body>
+</html>
