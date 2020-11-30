@@ -17,12 +17,13 @@ gameScene.create=function(){
     this.physics.add.existing(ball);
    
 //    this.button = this.add.sprite( 100, 100, 'button');
-    const button = this.add.sprite( 100, 100, 'button')
-	.setInteractive()
+  ball.body.setCollideWorldBounds(true, 1, 1);
+	ball.setInteractive()
 	.on('pointerup', () => 
        {
+        
         ball.body.setVelocity(150, 150);
-         ball.body.setCollideWorldBounds(true, 1, 1);
+         
        
     });
 //	.on('pointerup', () => button.setScale( 1 ));
