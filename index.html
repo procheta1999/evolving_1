@@ -12,19 +12,19 @@
    
 let gameScene= new Phaser.Scene('Game');  
 gameScene.create=function(){
-    this.circle=this.add.circle( 50, 150, 20, 0xffffff, 1);
-    this.circle.setPosition(30,150);
-    this.circle.angle=45
+    const ball=this.add.circle( 50, 150, 20, 0xffffff, 1);
+     
+    this.physics.add.existing(ball);
+   
+//    this.button = this.add.sprite( 100, 100, 'button');
     const button = this.add.sprite( 100, 100, 'button')
 	.setInteractive()
 	.on('pointerup', () => 
        {
-        while (this.circle.x<760)
-            {
-                this.circle.x+=1
-            }
+        ball.body.setVelocity(150, 150);
+         ball.body.setCollideWorldBounds(true, 1, 1);
+       
     });
-    console.log('position',this.circle.x);
 //	.on('pointerup', () => button.setScale( 1 ));
     
 };
@@ -40,7 +40,14 @@ gameScene.create=function(){
             type:Phaser.AUTO,
             width:800,
             height:360,
-            scene: gameScene
+            scene: gameScene,
+            physics:{
+                default: 'arcade',
+                arcade:{
+                    gravity:{y: 0},
+                    debug: true
+                }
+            }
         }
         let game=new Phaser.Game(config);
 </script>
